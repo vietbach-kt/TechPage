@@ -1,3 +1,6 @@
+@font-face {
+  font-family: 'PT Sans', sans-serif;
+}
 .topHeader {
   ul li a {
   color: black;
@@ -53,4 +56,48 @@
 .sideBarLeft{
   border: 1px gray solid;
   height: 40em;
+}
+#forumPageBackground{
+  background-color: #f3f3f3
+}
+#forumPage{
+  .container{
+    max-width: 980px !important;
+  }
+  .GroupInlineComposer{
+    margin-top: 5px;
+    height: 45em;
+    max-height: 50em;
+  }
+  .header{
+    border: 1px #e8e8e8 solid; 
+    box-shadow: 1px 1px 5px #f3f3f3;
+    border-radius: 8px; 
+  }
+  .EnterComment{
+    height: 8em;
+  }
+  .publicBackground{
+    margin: 20px 10px;
+    border: 1px #e8e8e8 solid;
+    background-color: white;
+    box-shadow: 1px 1px 5px #f3f3f3;
+    border-radius: 8px;
+  }
+  .NoFunction{
+    margin: 10px 10px;
+  }
+  .mainFunction{
+    margin: 10px 10px; 
+  }
+  .contentMicropostOrEvent{
+    margin: 10px 10px;
+  }
+  .aboutThisForum{
+    max-height: 15em;
+    height: 13em;
+  }
+  .marginForpage{
+    margin: 5px 5px;
+  }
 }
