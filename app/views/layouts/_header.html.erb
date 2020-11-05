@@ -3,17 +3,30 @@
     <div class="col-md-12 col-xs-12">
       <div class="topHeader">
         <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link" href="users/register">Đăng nhập</a>
-          </li>
+          <% unless signed_in? %>
+            <li class="nav-item">
+              <%= link_to  "Đăng nhập", new_user_session_path, class:"nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Đăng xuất",  destroy_user_session_path , class:"nav-link", method: :delete%>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a class="nav-link" href="#">Thông báo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Liên hệ</a>
           </li>
-          <li class="nav-item">
-            <p class="nav-link">Ngôn ngữ:</p>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ngôn ngữ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Tiếng Anh</a>
+              <a class="dropdown-item" href="#">Tiếng Việt</a>
+              <a class="dropdown-item" href="#">Tiếng Nhật</a>
+            </div>
           </li>
         </ul>
       </div>
@@ -35,7 +48,7 @@
               <a class="nav-link" href="#">Nghiên cứu khoa học</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Diễn đàn</a>
+              <%= link_to "Diễn đàn", wru_forum_path, class:"nav-link"%>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Tin tức</a>
