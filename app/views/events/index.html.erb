@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="listItemContent">
+          <% @events.each do |event| %>
+            <div class="itemContent publicBackground">
+            <div class="contentMicropostOrEvent">
+              <div class="contentDetail">
+                <div class="textContent">
+                  <div class="informationContent">
+                    <i class='fas fa-user-edit'></i>
+                    <b><%= event.user.name %></b>
+                    <div>
+                      <span><%= event.created_at.to_date%></span>
+                    </div>
+                  </div>
+                  <span><%= event.content%></span>
+                  <ul>
+                    <li><b>Start time:</b> <%= event.start_date.to_datetime%></li>
+                    <li><b>End time:</b> <%= event.end_date.to_datetime%></li>
+                  </ul>
+                </div>
+                <div class="listImage">
+
+                </div>
+              </div>
+              <div class="liveLikeAndQuantity">
+                <div class="quantityLikeComment">
+                  <div class="row">
+                    <div class="col-md-5">
+                      5 Like
+                    </div>
+                    <div class="col-md-7">
+                      <%= event.comments.count%> Comments
+                    </div>
+                  </div>
+                </div>
+                <div class="functionCommentLike">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <i class="far fa-thumbs-up"></i>Like
+                    </div>
+                    <div class="col-md-6">
+                      <i class="far fa-comment-alt"></i>Comment
+                    </div>
+                  </div>
+                </div>
+                <%= form_for :comment, url: event_comments_path(event), remote: true do |f| %>
+                  <div class="postComment">
+                    <div class="form-group" style="margin-top: 5px;">
+                      <div class="row">
+                        <div class="col-md-10">
+                          <%= f.text_field :content, class:"form-control", placeholder:"Write something..." %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                        </div>
+                        <div class="col-md-2">
+                          <%= f.submit "Post", class:"btn btn-primary"%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="listComment">
+                  <% event.comments.each do |comment| %>
+                    <div class="listItem">
+                      <div class="informationUser">
+                        <b><%= comment.user.name%></b>
+                      </div>
+                      <div class="commentItem">
+                        <span><%= comment.content%></span>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+</div>

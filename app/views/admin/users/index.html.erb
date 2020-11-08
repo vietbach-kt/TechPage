@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>List Users</h2>         
+  <table id="listUsers" class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Brith</th>
+        <th>Gender</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |user, index|%>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= user.name%></td>
+          <td><%= user.email%></td>
+          <td><%= user.birth%></td>
+          <td><%= user.gender%></td>
+          <td><%=user.admin%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  $(document).ready( function () {
+    $('#listUsers').DataTable();
+} );
+</script>
