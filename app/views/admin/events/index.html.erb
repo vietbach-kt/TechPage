@@ -1,0 +1,79 @@
+<div class="container">
+  <h2>List Events</h2>      
+  <!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myEvent">
+  Create Event
+</button>
+
+<!-- The Modal -->
+<div class="modal fade" id="myEvent">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Create Event</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <%= form_for :event, url: admin_events_path do |f| %>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Name</label>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.text_field :name, class:"form-control", placeholder:"Write something..." %>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Content</label>
+            <%= f.text_field :content, class:"form-control", placeholder:"Write something..." %>
+          </div>
+          <div class="form-group row">
+            <label for="example-datetime-local-input" class="col-2 col-form-label">Start</label>
+            <div class="col-10">
+              <%=f.datetime_field :start_date, class:"form-control", id:"example-datetime-local-input"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="example-datetime-local-input" class="col-2 col-form-label">End</label>
+            <div class="col-10">
+              <%=f.datetime_field :end_date, class:"form-control", id:"example-datetime-local-input"%>
+            </div>
+          </div>      
+        </div>
+      <!-- Modal footer -->
+        <div class="modal-footer">
+              <%=f.submit "Create", class:"btn btn-primary", style:"width:100%"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>   
+  <table id="listEvents" class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Time Start</th>
+        <th>Time End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each_with_index do |event, index|%>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= event.name%></td>
+          <td><%= event.content%></td>
+          <td><%= event.start_date%></td>
+          <td><%= event.end_date%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  $(document).ready( function () {
+    $('#listEvents').DataTable();
+} );
+</script>
